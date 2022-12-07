@@ -15,15 +15,22 @@ export const Hero = () => {
     const [productPrice, setProductPrice] = useState(0)
     const [productDescription, setProductDescription] = useState('')
 
-    const addToList = () => {
-        axios.post("http://localhost:3001/post", {
-            name: productName,
-            category: productCategory,
-            price: productPrice,
-            description: productDescription,
-        })
-    }
+const addToList = () => {
+    
 
+         
+            axios.post(          // any call like get
+              "http://localhost:3001/post",         // your URL
+              {                                     // data if post, put
+                name:productName,
+                category:productCategory,
+                price:productPrice,
+                description:productDescription,
+              }
+            )
+            }
+
+    
 
     return (
         <Container>
@@ -107,7 +114,7 @@ export const Hero = () => {
                             <Row></Row>
                         </Card.Body>
                         <Card.Footer>
-                            <Button auto color="gradient" rounded bordered onClick={addToList}>Add to List</Button>
+                            <Button auto color="gradient" rounded bordered onPress={addToList}>Add to List</Button>
                         </Card.Footer>
 
                     </Card>
