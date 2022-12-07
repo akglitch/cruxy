@@ -32,8 +32,8 @@ export const Nav = () => {
         variant="highlight"
       >
         <Navbar.Link href="#">Home</Navbar.Link>
-        <Navbar.Link isActive href="#">
-          Products
+        <Navbar.Link href="#">
+        Products
         </Navbar.Link>
         <Navbar.Link href="#">Projects</Navbar.Link>
         <Navbar.Link href="#">Portfolio</Navbar.Link>

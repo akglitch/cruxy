@@ -6,15 +6,21 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
 
     const [productList, setProductList] = useState([])
 
+    const getProducts = () => {
+      axios.get("http://localhost:3001/products").then((response) =>{
+        console.log(response.data)
+          setProductList(response.data)
+      })
+    }
+
     useEffect(()=> {
-        axios.get("http://localhost:3001/products").then((response) =>{
-          console.log(response.data)
-            setProductList(response.data)
-        })
+       getProducts()
     }, [])
 
     const deleteProduct = (id) =>{
-      axios.delete(`http://localhost:3001/products/${id}`)
+      axios.delete(`http://localhost:3001/delete/${id}`)
+      getProducts()
+      window.location.reload()
     }
 
 
@@ -48,7 +54,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
               <Button size="sm" light>
             update
               </Button>
-              <Button size="sm" onClick={deleteProduct}>delete</Button>
+              <Button size="sm" onPress={() => deleteProduct(val._id)}>delete</Button>
             </Row>
           </Card.Footer>
         </Card>

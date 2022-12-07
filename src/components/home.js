@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-export const Hero = () => {
+export const Home = () => {
 
 
 
@@ -19,15 +19,18 @@ const addToList = () => {
     
 
          
-            axios.post(          // any call like get
-              "http://localhost:3001/post",         // your URL
-              {                                     // data if post, put
+            axios.post( "http://localhost:3001/post",
+              {                                     
                 name:productName,
                 category:productCategory,
                 price:productPrice,
                 description:productDescription,
+                
               }
+              
+              
             )
+            window.location.reload()
             }
 
     

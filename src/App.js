@@ -1,5 +1,6 @@
+
 import './App.css';
-import { Hero } from './components/hero';
+import { Home } from './components/home';
 import { Nav} from './components/navbar';
 import { Product } from './components/products';
 
@@ -9,9 +10,12 @@ import { Product } from './components/products';
 function App() {
   return (
     <div>
-    <Nav/>
-    <Hero />
-    <Product />
+     <Nav/>
+    <Home />
+   <Product />
+   
+   
+    
     </div>
   );
 }
