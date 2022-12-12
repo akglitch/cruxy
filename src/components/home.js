@@ -26,7 +26,7 @@ export const Home = () => {
 
         axios.post("http://localhost:3001/post",
             {
-                name: todoName,
+                title: todoName,
                 category: todoCategory,
                 description: todoDescription,
 

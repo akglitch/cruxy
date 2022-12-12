@@ -2,24 +2,24 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
 
- export const Product = () => {
+ export const Todo = () => {
 
-    const [productList, setProductList] = useState([])
+    const [todoList, setTodoList] = useState([])
 
-    const getProducts = () => {
-      axios.get("http://localhost:3001/products").then((response) =>{
+    const getTodos = () => {
+      axios.get("http://localhost:3001/todos").then((response) =>{
         console.log(response.data)
-          setProductList(response.data)
+          setTodoList(response.data)
       })
     }
 
     useEffect(()=> {
-       getProducts()
+       getTodos()
     }, [])
 
-    const deleteProduct = (id) =>{
+    const deleteTodo = (id) =>{
       axios.delete(`http://localhost:3001/delete/${id}`)
-      getProducts()
+      getTodos()
       window.location.reload()
     }
 
@@ -28,11 +28,11 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
         <div>
            <Grid.Container gap={2}>
       
-        {productList.map((val,key) =>  ( 
+        {todoList.map((val,key) =>  ( 
           <Grid key={key} sm={6} md={6}>    
             <Card css={{ mw: "500px" }}>
           <Card.Header>
-            <Text b>{val.name}</Text>
+            <Text b>{val.title}</Text>
           </Card.Header>
           <Card.Divider />
           <Card.Body css={{ py: "$10" }}>
@@ -43,10 +43,6 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
             <Text>
               {val.description}
             </Text>
-            <Card.Divider />
-            <Text>
-            ${val.price}
-            </Text>
           </Card.Body>
           <Card.Divider />
           <Card.Footer>
@@ -54,7 +50,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
               <Button size="sm" light>
             update
               </Button>
-              <Button size="sm" onPress={() => deleteProduct(val._id)}>delete</Button>
+              <Button size="sm" onPress={() => deleteTodo(val._id)}>delete</Button>
             </Row>
           </Card.Footer>
         </Card>

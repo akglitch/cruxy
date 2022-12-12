@@ -1,8 +1,9 @@
 
 import './App.css';
 import { Home } from './components/home';
-import { Nav} from './components/navbar';
-import { Product } from './components/products';
+import { Nav } from './components/navbar';
+import { Todo } from './components/todo';
+
 
 
 
@@ -10,12 +11,12 @@ import { Product } from './components/products';
 function App() {
   return (
     <div>
-     <Nav/>
-    <Home />
-   <Product />
-   
-   
-    
+      <Nav />
+      <Home />
+      <Todo />
+
+
+
     </div>
   );
 }
