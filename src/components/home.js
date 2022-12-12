@@ -1,5 +1,7 @@
-import { Input, Grid, Image, Button, Card, Spacer, Text, Row, Textarea, Container } from "@nextui-org/react"
+import React from "react";
+import { Input, Modal, Checkbox, Button, Text, Row, } from "@nextui-org/react"
 import { useState } from "react"
+
 
 import axios from "axios";
 
@@ -7,127 +9,115 @@ import axios from "axios";
 
 export const Home = () => {
 
+    const [visible, setVisible] = React.useState(false);
+    const handler = () => setVisible(true);
+    const closeHandler = () => {
+        setVisible(false);
+        console.log("closed");
+    };
+
+    const [todoName, setTodoName] = useState('')
+    const [todoCategory, setTodoCategory] = useState('')
+    const [todoDescription, setTodoDescription] = useState('')
+
+    const addToList = () => {
 
 
 
-    const [productName, setProductName] = useState('')
-    const [productCategory, setProductCategory] = useState('')
-    const [productPrice, setProductPrice] = useState(0)
-    const [productDescription, setProductDescription] = useState('')
+        axios.post("http://localhost:3001/post",
+            {
+                name: todoName,
+                category: todoCategory,
+                description: todoDescription,
 
-const addToList = () => {
-    
-
-         
-            axios.post( "http://localhost:3001/post",
-              {                                     
-                name:productName,
-                category:productCategory,
-                price:productPrice,
-                description:productDescription,
-                
-              }
-              
-              
-            )
-            window.location.reload()
             }
 
-    
+
+        )
+        window.location.reload()
+    }
+
+
 
     return (
-        <Container>
-            <Grid.Container>
+        <div>
+            <Button auto color="warning" shadow onClick={handler}>
+                Open modal
+            </Button>
+            <Modal
+                closeButton
+                blur
+                aria-labelledby="modal-title"
+                open={visible}
+                onClose={closeHandler}
+            >
+                <Modal.Header>
+                    <Text id="modal-title" size={18}>
+                        Welcome to
+                        <Text b size={18}>
+                            NextUI
+                        </Text>
+                    </Text>
+                </Modal.Header>
+                <Modal.Body>
+                    <Input
+                        clearable
+                        bordered
+                        fullWidth
+                        color="primary"
+                        size="lg"
+                        placeholder="Name"
+                        onChange={(e) =>  {
+                            setTodoName(e.target.value)
+                        }}
 
-                <Grid xs={12} sm={6} md={6} lg={6}>
-                    <Image
-                        src="form.svg"
-                        css={{ borderRadius: "$2xl" }}
-                        alt={"con"}
                     />
-                </Grid>
+                      <Input
+                        clearable
+                        bordered
+                        fullWidth
+                        color="primary"
+                        size="lg"
+                        placeholder="category"
 
+                        onChange={(e) => {
+                            setTodoCategory(e.target.value);
+                        }}
+                    />
 
-                <Grid xs={12} sm={6} md={6} lg={6} justify={"center"} >
+                    <Input
+                        clearable
+                        bordered
+                        fullWidth
+                        color="primary"
+                        size="lg"
+                        placeholder="description"
 
-                    <Card css={{ p: "$6", padding: "$10", marginTop: "$28", mw: "650px" }}
-                        variant={"bordered"}>
-
-                        <Card.Header>
-                            <Text b color="primary" id="Card-title" size={18} justify={"center"}>
-                                Enter product details
-                            </Text>
-                        </Card.Header>
-                        <Card.Body>
-                            <Input
-                                aria-label="name"
-                                clearable
-                                underlined
-                                required
-                                fullWidth
-                                color="primary"
-                                size="lg"
-                                placeholder="Name"
-                                name="product_name"
-                                onChange={(e) => {
-                                    setProductName(e.target.value);
-                                }}
-                            />
-                            <Spacer y={3} />
-                            <Input
-                                aria-label="cagegory"
-                                clearable
-                                required
-                                underlined
-                                fullWidth
-                                color="primary"
-                                size="lg"
-                                placeholder="Category"
-                                name="product_category"
-                                onChange={(e) => {
-                                    setProductCategory(e.target.value);
-                                }}
-                            />
-                            <Spacer y={3} />
-                            <Input
-                                aria-label="price"
-                                clearable
-                                required
-                                underlined
-                                fullWidth
-                                color="primary"
-                                size="lg"
-                                placeholder="Price"
-                                name="product_price"
-                                onChange={(e) => {
-                                    setProductPrice(e.target.value);
-                                }}
-                            />
-                            <Spacer y={3} />
-                            <Textarea
-                                underlined
-                                aria-label="description"
-                                color="primary"
-                                placeholder="productDescription"
-                                name="description"
-                                onChange={(e) => {
-                                    setProductDescription(e.target.value);
-                                }}
-                            />
-                            <Row></Row>
-                        </Card.Body>
-                        <Card.Footer>
-                            <Button auto color="gradient" rounded bordered onPress={addToList}>Add to List</Button>
-                        </Card.Footer>
-
-                    </Card>
-
-
-                </Grid>
-
-
-
-            </Grid.Container>
-        </Container>
+                        onChange={(e) => {
+                            setTodoDescription(e.target.value);
+                        }}
+                    />
+                    <Row justify="space-between">
+                        <Checkbox>
+                            <Text size={14}>Remember me</Text>
+                        </Checkbox>
+                        <Text size={14}>Forgot password?</Text>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button auto flat color="error" onClick={addToList}>
+                        Add to List
+                    </Button>
+                    <Button auto flat color="error" onClick={closeHandler}>
+                        Close
+                    </Button>
+                    <Button auto onClick={closeHandler}>
+                        Sign in
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
     )
 }
+
+
