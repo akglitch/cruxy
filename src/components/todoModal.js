@@ -17,7 +17,6 @@ export const TodoModal = () => {
     };
 
     const [todoTitle, setTodoTitle] = useState('')
-    const [todoCategory, setTodoCategory] = useState('')
     const [todoDescription, setTodoDescription] = useState('')
 
     const addToList = () => {
@@ -27,7 +26,6 @@ export const TodoModal = () => {
         axios.post("http://localhost:3001/post",
             {
                 title: todoTitle,
-                category: todoCategory,
                 description: todoDescription,
 
             }
@@ -41,6 +39,7 @@ export const TodoModal = () => {
 
     return (
         <div>
+        <h1>Crud App With MERN</h1>
             <Button auto color="warning" shadow onClick={handler}>
                 Add Todo Item
             </Button>
@@ -72,19 +71,7 @@ export const TodoModal = () => {
                         }}
 
                     />
-                      <Input
-                        clearable
-                        bordered
-                        fullWidth
-                        color="primary"
-                        size="lg"
-                        placeholder="category"
-
-                        onChange={(e) => {
-                            setTodoCategory(e.target.value);
-                        }}
-                    />
-
+                    
                     <Input
                         clearable
                         bordered

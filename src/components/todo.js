@@ -25,7 +25,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
 
 
     return(
-        <div>
+        <div justify="center" >
         
            <Grid.Container  gap={2}>
       
@@ -33,25 +33,22 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
           <Grid key={key}lg={3} sm={3} md={3}>    
             <Card css={{ mw: "500px" }}>
           <Card.Header>
-            <Text b>{val.title}</Text>
+          Title: <Text b>{val.title}</Text>
           </Card.Header>
           <Card.Divider />
           <Card.Body css={{ py: "$10" }}>
+            
             <Text>
-              {val.category}
-            </Text>
-            <Card.Divider />
-            <Text>
-              {val.description}
-            </Text>
+             Description: {val.description}
+             </Text>
           </Card.Body>
-          <Card.Divider />
+         
           <Card.Footer>
             <Row justify="flex-end">
-              <Button size="sm" light>
+              <Button color="primary" size="sm">
             update
               </Button>
-              <Button size="sm" onPress={() => deleteTodo(val._id)}>delete</Button>
+              <Button color="error" size="sm" onPress={() => deleteTodo(val._id)}>delete</Button>
             </Row>
           </Card.Footer>
         </Card>
