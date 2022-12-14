@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 
-export const Home = () => {
+export const TodoModal = () => {
 
     const [visible, setVisible] = React.useState(false);
     const handler = () => setVisible(true);
@@ -16,7 +16,7 @@ export const Home = () => {
         console.log("closed");
     };
 
-    const [todoName, setTodoName] = useState('')
+    const [todoTitle, setTodoTitle] = useState('')
     const [todoCategory, setTodoCategory] = useState('')
     const [todoDescription, setTodoDescription] = useState('')
 
@@ -26,7 +26,7 @@ export const Home = () => {
 
         axios.post("http://localhost:3001/post",
             {
-                title: todoName,
+                title: todoTitle,
                 category: todoCategory,
                 description: todoDescription,
 
@@ -42,7 +42,7 @@ export const Home = () => {
     return (
         <div>
             <Button auto color="warning" shadow onClick={handler}>
-                Open modal
+                Add Todo Item
             </Button>
             <Modal
                 closeButton
@@ -55,7 +55,7 @@ export const Home = () => {
                     <Text id="modal-title" size={18}>
                         Welcome to
                         <Text b size={18}>
-                            NextUI
+                            Todo__Station
                         </Text>
                     </Text>
                 </Modal.Header>
@@ -66,9 +66,9 @@ export const Home = () => {
                         fullWidth
                         color="primary"
                         size="lg"
-                        placeholder="Name"
+                        placeholder="title"
                         onChange={(e) =>  {
-                            setTodoName(e.target.value)
+                            setTodoTitle(e.target.value)
                         }}
 
                     />

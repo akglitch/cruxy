@@ -26,10 +26,11 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
 
     return(
         <div>
-           <Grid.Container gap={2}>
+        
+           <Grid.Container  gap={2}>
       
         {todoList.map((val,key) =>  ( 
-          <Grid key={key} sm={6} md={6}>    
+          <Grid key={key}lg={3} sm={3} md={3}>    
             <Card css={{ mw: "500px" }}>
           <Card.Header>
             <Text b>{val.title}</Text>
@@ -58,6 +59,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
         ))}
         
         </Grid.Container>
+       
         </div>
     )
 }
