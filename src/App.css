@@ -4,3 +4,9 @@
 #card-title{
   align-items: center;
 }
+
+.title{
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
