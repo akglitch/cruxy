@@ -90,23 +90,16 @@ export const TodoModal = () => {
                             setTodoDescription(e.target.value);
                         }}
                     />
-                    <Row justify="space-between">
-                        <Checkbox>
-                            <Text size={14}>Remember me</Text>
-                        </Checkbox>
-                        <Text size={14}>Forgot password?</Text>
-                    </Row>
+                  
                 </Modal.Body>
                 <Modal.Footer>
-                <Button auto flat color="error" onClick={addToList}>
+                <Button auto flat size="md" color="primary" onClick={addToList}>
                         Add to List
                     </Button>
-                    <Button auto flat color="error" onClick={closeHandler}>
+                    <Button auto flat size="md" color="error" onClick={closeHandler}>
                         Close
                     </Button>
-                    <Button auto onClick={closeHandler}>
-                        Sign in
-                    </Button>
+                    
                 </Modal.Footer>
             </Modal>
         </div>

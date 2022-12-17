@@ -45,10 +45,10 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
          
           <Card.Footer>
             <Row justify="flex-end">
-              <Button color="primary" size="sm">
+              <Button color="primary"flat size="md">
             update
               </Button>
-              <Button color="error" size="sm" onPress={() => deleteTodo(val._id)}>delete</Button>
+              <Button color="error"flat size="md" onPress={() => deleteTodo(val._id)}>delete</Button>
             </Row>
           </Card.Footer>
         </Card>
