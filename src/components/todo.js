@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
+import { Grid ,Card,Button,Text,Row, Container} from "@nextui-org/react";
 
  export const Todo = () => {
 
@@ -25,6 +25,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
 
 
     return(
+      <Container lg>
         <div justify="center" >
         
            <Grid.Container  gap={2}>
@@ -45,10 +46,10 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
          
           <Card.Footer>
             <Row justify="flex-end">
-              <Button color="primary"flat size="md">
+              <Button color="primary"flat size="xs">
             update
               </Button>
-              <Button color="error"flat size="md" onPress={() => deleteTodo(val._id)}>delete</Button>
+              <Button color="error"flat size="xs" onPress={() => deleteTodo(val._id)}>delete</Button>
             </Row>
           </Card.Footer>
         </Card>
@@ -58,6 +59,7 @@ import { Grid ,Card,Button,Text,Row} from "@nextui-org/react";
         </Grid.Container>
        
         </div>
+        </Container>
     )
 }
 
