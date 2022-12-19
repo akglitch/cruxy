@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Modal, Checkbox, Button, Text, Row, } from "@nextui-org/react"
+import { Input, Modal, Button, Text, Row, } from "@nextui-org/react"
 import { useState } from "react"
 
 
@@ -58,10 +58,7 @@ export const TodoModal = () => {
             >
                 <Modal.Header>
                     <Text id="modal-title" size={18}>
-                        Welcome to
-                        <Text b size={18}>
-                            Todo__Station
-                        </Text>
+                        Add Item
                     </Text>
                 </Modal.Header>
                 <Modal.Body>
