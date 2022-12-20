@@ -42,7 +42,7 @@ export const TodoModal = () => {
         <div className="title">
         <h1>Crud App With MERN</h1>
         <Row justify="center">
-        <Button auto  color="primary" css={{}} shadow onClick={handler}>
+        <Button auto  color="primary" css={{}} shadow onPress={handler}>
                 Add Todo Item
             </Button>
         </Row>
