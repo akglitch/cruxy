@@ -33,7 +33,7 @@ export const Todo = () => {
       
     })
     getTodos()
-    window.location
+    window.location.reload()
   }
 
   const [visible, setVisible] = React.useState(false);
