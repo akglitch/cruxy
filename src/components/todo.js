@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { Modal, Grid, Card, Button, Text, Row, Input, Container } from "@nextui-org/react";
+import {  Grid, Card, Button, Text, Row, Container } from "@nextui-org/react";
 import React from "react";
+import MyModal from "./modal";
 export const Todo = () => {
 
   const [todoList, setTodoList] = useState([])
   const [newTitle, setNewTitle] = useState('')
   const [newDescription, setNewDescription] = useState('')
+  const [id, setId] = useState('')
 
   const getTodos = () => {
     axios.get("http://localhost:3001/todos").then((response) => {
@@ -27,10 +29,11 @@ export const Todo = () => {
 
 
   const updateTodo = (id) => {
+   
+    closeHandler()
     axios.put(`http://localhost:3001/update/${id}`, {
       title: newTitle,
       description: newDescription,
-      
     })
     getTodos()
     window.location.reload()
@@ -38,15 +41,16 @@ export const Todo = () => {
 
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
-  const closeHandler = () => {
+  function closeHandler() {
     setVisible(false);
     console.log("closed");
   };
 
-  
+
 
   return (
     <Container lg>
+    <MyModal updateTodo={updateTodo} handler={handler} visible={visible} closeHandler={closeHandler} setNewTitle={setNewTitle} setNewDescription={setNewDescription} id={id} />
       <div justify="center" >
 
         <Grid.Container gap={2}>
@@ -65,66 +69,11 @@ export const Todo = () => {
                   </Text>
 
                 </Card.Body>
-              
-
-
-
-
-                    <Modal
-                      closeButt
-                      aria-labelledby="modal-title"
-                      open={visible}
-                      onClose={closeHandler}
-                    >
-                      <Modal.Header>
-                        <Text id="modal-title" size={18}>
-                          update Item
-                        </Text>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <Input
-                          clearable
-                          bordered
-                          fullWidth
-                          color="primary"
-                          size="lg"
-                          placeholder="title"
-                          onChange={(e) => {
-                            setNewTitle(e.target.value)
-                          }}
-
-                        />
-
-                        <Input
-                          clearable
-                          bordered
-                          fullWidth
-                          color="primary"
-                          size="lg"
-                          placeholder="description"
-
-                          onChange={(e) => {
-                            setNewDescription(e.target.value);
-                          }}
-                        />
-
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button color="primary" auto flat size="xs" onPress={() => updateTodo(val._id)}>
-                          update
-                        </Button>
-
-                      </Modal.Footer>
-                    </Modal>
-                 
-                 
-
-
 
                 <Card.Footer>
                   <Row justify="flex-end">
 
-                    <Button auto color="primary" flat size="xs" shadow onPress={handler}>
+                    <Button auto color="primary" flat size="xs" shadow onPress={() => { setId(val._id); handler() }}>
                       update
                     </Button>
                     <Button color="error" flat size="xs" onPress={() => deleteTodo(val._id)}>delete</Button>
@@ -133,12 +82,15 @@ export const Todo = () => {
               </Card>
             </Grid>
 
-            
+
           ))}
 
         </Grid.Container>
 
       </div>
+
+
+
     </Container>
   )
 }
